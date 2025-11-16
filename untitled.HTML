@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baba İzin Sayfası</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+    .btn {
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .yes {
+      background: #4caf50;
+      color: white;
+    }
+    .no {
+      background: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Baba, bugün gelmesem olur mu?</h1>
+  <p id="msg" style="font-size:22px; margin-top:20px; height:30px; color:#333;"></p>
+
+  <button class="btn yes">Evet</button>
+  <button class="btn no">Hayır</button>
+  <script>
+    document.querySelector('.yes').addEventListener('click', function() {
+      document.getElementById('msg').textContent = 'Teşekkürler baba!';
+    });
+      document.querySelector('.no').addEventListener('click', function() {
+      const msg = document.getElementById('msg');
+
+      if (!this.dataset.step) {
+        this.dataset.step = 1;
+        msg.textContent = 'Emin misin?';
+      } else if (this.dataset.step == 1) {
+        this.dataset.step = 2;
+        msg.textContent = 'Gerçekten mi?';
+      } else {
+        document.querySelector('.yes').disabled = false;
+        document.querySelector('.no').disabled = false;
+        document.querySelector('.yes').textContent = 'Evet';
+        document.querySelector('.no').textContent = 'Evet';
+        msg.textContent = 'Artık sadece EVET var 😊';
+      }
+    });
+  </script>
+</body>
+</html>
